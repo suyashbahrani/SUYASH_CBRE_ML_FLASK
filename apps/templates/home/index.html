@@ -1,0 +1,1583 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="container-fluid py-4">
+  <div class="row">
+    
+    <div class="col-md-4">
+      <div class="card h-100">
+        <div class="card-header">
+          <h3 class="text-center">Price Prediction</h3>
+        </div>
+        <div class="card-body">
+          <form id="prediction-form">
+            <!-- HTML for sliders -->
+<div id="sliders-container">
+  <!-- This is where sliders will be dynamically added -->
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-4">
+  <div class="card h-100">
+    <div class="card-header">
+      <h3 class="text-center">Price Prediction</h3>
+    </div>
+    <div class="card-body">
+<!-- HTML for dropdowns -->
+<div id="dropdowns-container">
+  <div class="mb-3">
+    <div class="col-lg-12 ms-lg-auto col-md-6 col-sm-3 d-flex justify-content-center">
+      <div class="dropdown">
+        <button class="btn bg-gradient-primary dropdown-toggle" type="button" id="property-type" data-bs-toggle="dropdown" aria-expanded="false" style="min-width: 250px;">
+          Property Type
+        </button>
+        <ul class="dropdown-menu px-2 py-3" aria-labelledby="property-type">
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('property-type','Landscaped Grounds')">Landscaped Grounds</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('property-type','Corporate Office')">Corporate Office</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('property-type','Resort Complex')">Resort Complex</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('property-type','Industrial Complex')">Industrial Complex</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('property-type','Commercial Complex')">Commercial Complex</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('property-type','Office Building')">Office Building</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('property-type','Office Space')">Office Space</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('property-type','Office Park')">Office Park</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('property-type','Shopping Mall')">Shopping Mall</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('property-type','Corporate Tower')">Corporate Tower</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('property-type','Commercial Park')">Commercial Park</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('property-type','Commercial Tower')">Commercial Tower</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('property-type','Shopping Center')">Shopping Center</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('property-type','Commercial Center')">Commercial Center</a></li>
+
+        </ul>
+      </div>
+    </div>
+  </div>  
+  <div class="mb-3">
+    <div class="col-lg-12 ms-lg-auto col-md-6 col-sm-3 d-flex justify-content-center">
+      <div class="dropdown">
+        <button class="btn bg-gradient-primary dropdown-toggle" type="button" id="transaction-type" data-bs-toggle="dropdown" aria-expanded="false" style="min-width: 250px;">
+          Transaction Type
+        </button>
+        <ul class="dropdown-menu px-2 py-3" aria-labelledby="transaction-type">
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('transaction-type','Lease')">Lease</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('transaction-type','Purchase')">Purchase</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>  
+  <div class="mb-3">
+    <div class="col-lg-12 ms-lg-auto col-md-6 col-sm-3 d-flex justify-content-center">
+      <div class="dropdown">
+        <button class="btn bg-gradient-primary dropdown-toggle" type="button" id="region" data-bs-toggle="dropdown" aria-expanded="false" style="min-width: 250px;">
+          Region
+        </button>
+        <ul class="dropdown-menu px-2 py-3" aria-labelledby="region">
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('region','North America'); handleRegionSelection('North America')">North America</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('region','Europe'); handleRegionSelection('Europe')">Europe</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('region','Oceania'); handleRegionSelection('Oceania')">Oceania</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('region','Asia'); handleRegionSelection('Asia')">Asia</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('region','Africa'); handleRegionSelection('Africa')">Africa</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('region','South America'); handleRegionSelection('South America')">South America</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('region','Middle East'); handleRegionSelection('Middle East')">Middle East</a></li>          
+        </ul>
+      </div>
+    </div>
+  </div>  
+  <div class="mb-3">
+    <div class="col-lg-12 ms-lg-auto col-md-6 col-sm-3 d-flex justify-content-center">
+      <div class="dropdown">
+        <button class="btn bg-gradient-primary dropdown-toggle" type="button" id="country" data-bs-toggle="dropdown" aria-expanded="false" style="min-width: 250px;">
+          Country
+        </button>
+        <ul class="dropdown-menu px-2 py-3" aria-labelledby="country" id="country-dropdown">
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('country','Canada'); handleCountrySelection('Canada')">Canada</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('country','Belgium'); handleCountrySelection('Belgium')">Belgium</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('country','Greece'); handleCountrySelection('Greece')">Greece</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('country','Australia'); handleCountrySelection('Australia')">Australia</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('country','Japan'); handleCountrySelection('Japan')">Japan</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('country','USA'); handleCountrySelection('USA')">USA</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('country','South Korea'); handleCountrySelection('South Korea')">South Korea</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('country','Nigeria'); handleCountrySelection('Nigeria')">Nigeria</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('country','Vietnam'); handleCountrySelection('Vietnam')">Vietnam</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('country','Brazil'); handleCountrySelection('Brazil')">Brazil</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('country','Argentina'); handleCountrySelection('Argentina')">Argentina</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('country','Papua New Guinea'); handleCountrySelection('Papua New Guinea')">Papua New Guinea</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('country','Philippines'); handleCountrySelection('Philippines')">Philippines</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('country','Mexico'); handleCountrySelection('Mexico')">Mexico</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('country','United Kingdom'); handleCountrySelection('United Kingdom')">United Kingdom</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('country','India'); handleCountrySelection('India')">India</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('country','Egypt'); handleCountrySelection('Egypt')">Egypt</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('country','Germany'); handleCountrySelection('Germany')">Germany</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('country','Thailand'); handleCountrySelection('Thailand')">Thailand</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('country','UAE'); handleCountrySelection('UAE')">UAE</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('country','Kenya'); handleCountrySelection('Kenya')">Kenya</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('country','South Africa'); handleCountrySelection('South Africa')">South Africa</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('country','France'); handleCountrySelection('France')">France</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('country','Italy'); handleCountrySelection('Italy')">Italy</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('country','New Zealand'); handleCountrySelection('New Zealand')">New Zealand</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('country','Malaysia'); handleCountrySelection('Malaysia')">Malaysia</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('country','Peru'); handleCountrySelection('Peru')">Peru</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('country','Spain'); handleCountrySelection('Spain')">Spain</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('country','Singapore'); handleCountrySelection('Singapore')">Singapore</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('country','China'); handleCountrySelection('China')">China</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('country','Chile'); handleCountrySelection('Chile')">Chile</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>  
+  <div class="mb-3">
+    <div class="col-lg-12 ms-lg-auto col-md-6 col-sm-3 d-flex justify-content-center">
+      <div class="dropdown">
+        <button class="btn bg-gradient-primary dropdown-toggle" type="button" id="area" data-bs-toggle="dropdown" aria-expanded="false" style="min-width: 250px;">
+          Area
+        </button>
+        <ul class="dropdown-menu px-2 py-3" aria-labelledby="area" id="area-dropdown">
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('area','Edmonton')">Edmonton</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('area','Brussels')">Brussels</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('area','Ottawa')">Ottawa</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('area','Athens')">Athens</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('area','Melbourne')">Melbourne</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('area','Tokyo')">Tokyo</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('area','New York City')">New York City</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('area','Seoul')">Seoul</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('area','Lagos')">Lagos</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('area','Ho Chi Minh City')">Ho Chi Minh City</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('area','Miami')">Miami</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('area','San Francisco')">San Francisco</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('area','Sao Paulo')">Sao Paulo</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('area','Buenos Aires')">Buenos Aires</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('area','Port Moresby')">Port Moresby</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('area','Manila')">Manila</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('area','Mexico City')">Mexico City</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('area','London')">London</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('area','Rio de Janeiro')">Rio de Janeiro</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('area','New Delhi')">New Delhi</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('area','Cairo')">Cairo</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('area','Sydney')">Sydney</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('area','Berlin')">Berlin</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('area','Dubai')">Dubai</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('area','Nairobi')">Nairobi</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('area','Toronto')">Toronto</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('area','Johannesburg')">Johannesburg</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('area','Paris')">Paris</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('area','Rome')">Rome</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('area','Auckland')">Auckland</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('area','Kuala Lumpur')">Kuala Lumpur</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('area','Lima')">Lima</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('area','Bangkok')">Bangkok</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('area','Madrid')">Madrid</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('area','Singapore')">Singapore</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('area','Shanghai')">Shanghai</a></li>
+          <li><a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('area','Santiago')">Santiago</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>  
+</div>
+<script>
+  // Properties data
+  var properties = [
+      { name: "Property Size", id: "property-size", min: 10000, max: 100000, step: 1000, value: 32000 },
+      { name: "Commission Rate", id: "commission-rate", min: 1.0, max: 5.0, step: 0.1, value: 3.49 },
+      { name: "Difference (in days)", id: "difference-days", min: 1, max: 50, step: 1, value: 25 },
+      { name: "Feedback Score", id: "feedback-score", min: 1, max: 5, step: 1, value: 4 }
+      // Add more properties as needed
+  ];
+
+  // Function to generate HTML for sliders
+  function generateSliders() {
+      var container = document.getElementById("sliders-container");
+
+      properties.forEach(function(property) {
+          var div = document.createElement("div");
+          div.classList.add("mb-3");
+
+          var label = document.createElement("label");
+          label.setAttribute("for", property.id);
+          label.classList.add("form-label");
+          label.textContent = property.name;
+
+          var input = document.createElement("input");
+          input.setAttribute("type", "range");
+          input.classList.add("form-range");
+          input.setAttribute("id", property.id);
+          input.setAttribute("min", property.min);
+          input.setAttribute("max", property.max);
+          input.setAttribute("step", property.step);
+          input.setAttribute("value", property.value);
+
+          var span = document.createElement("span");
+          span.setAttribute("id", property.id + "-value");
+          span.textContent = property.value;
+
+          div.appendChild(label);
+          div.appendChild(input);
+          div.appendChild(span);
+          container.appendChild(div);
+      });
+  }
+
+  // Call the function to generate sliders
+  generateSliders();
+
+  // Function to update span text when slider value changes
+  document.querySelectorAll("input[type=range]").forEach(function(slider) {
+      slider.addEventListener("input", function() {
+          var value = this.value;
+          var id = this.getAttribute("id");
+          document.getElementById(id + "-value").textContent = value;
+      });
+  });
+</script>
+          
+        </div>
+      </div>
+    </div>
+    
+  
+  <div class="col-md-4">
+    <div class="card h-100">
+      <div class="card-header">
+        <h3 class="text-center">Price Prediction</h3>
+      </div>
+      <div class="card-body">
+        <div class="card-footer">
+          <h4 class="text-center">Predicted Price</h4>
+          <div id="predicted-price" class="text-center">$0</div>
+        </div>
+</div>
+</div>
+</div>
+<div class="row mt-3">
+  <div class="col-md-4 offset-md-3">
+    <button type="submit" class="btn btn-primary btn-lg btn-block" style="width: 500px;">Predict Price</button>
+  </div>
+</div>    
+</form>
+</div>
+  
+</div>
+
+<script>
+  // JavaScript code to handle form submission and update predicted price
+  
+  var selectedValues = {}; // Object to store selected values for each dropdown
+
+  function handleSelection(dropdownId, selectedValue) {
+    // Pass the selected value to the script or perform any action needed
+    console.log("Here I am handleSelection")
+    console.log("Dropdown ID:", dropdownId);
+    console.log("Selected value:", selectedValue);
+    // Update the button text with the selected value
+    document.getElementById(dropdownId).innerText = selectedValue;
+    // Update the selectedValues object
+    selectedValues[dropdownId] = selectedValue;
+    // You can send this value to your script or perform any other logic here
+  }
+
+  function getSelectedValue(dropdownId) {
+    return selectedValues[dropdownId];
+  }
+  
+  const countryData = {
+    'North America': ['USA', 'Canada'],
+    'Europe': ['Belgium', 'Greece', 'United Kingdom', 'Italy', 'Germany', 'Spain', 'France'],
+    'Oceania': ['Australia', 'New Zealand', 'Papua New Guinea'],
+    'Asia': ['Japan', 'South Korea', 'India', 'China', 'Singapore', 'Malaysia', 'Thailand', 'Vietnam'],
+    'Africa': ['Nigeria', 'South Africa', 'Kenya', 'Egypt'],
+    'South America': ['Brazil', 'Argentina', 'Chile', 'Peru'],
+    'Middle East': ['UAE']
+};
+
+const areaData = {
+    'USA': ['New York City', 'San Francisco', 'Miami'],
+    'Canada': ['Toronto', 'Ottawa', 'Edmonton'],
+    'Belgium': ['Brussels'],
+    'Greece': ['Athens'],
+    'United Kingdom': ['London'],
+    'Italy': ['Rome'],
+    'Germany': ['Berlin'],
+    'Spain': ['Madrid'],
+    'France': ['Paris'],
+    'Australia': ['Sydney', 'Melbourne'],
+    'New Zealand': ['Auckland'],
+    'Papua New Guinea': ['Port Moresby'],
+    'Japan': ['Tokyo'],
+    'South Korea': ['Seoul'],
+    'India': ['New Delhi'],
+    'China': ['Shanghai'],
+    'Singapore': ['Singapore'],
+    'Malaysia': ['Kuala Lumpur'],
+    'Thailand': ['Bangkok'],
+    'Vietnam': ['Ho Chi Minh City'],
+    'Nigeria': ['Lagos'],
+    'South Africa': ['Johannesburg'],
+    'Kenya': ['Nairobi'],
+    'Egypt': ['Cairo'],
+    'Brazil': ['Sao Paulo', 'Rio de Janeiro'],
+    'Argentina': ['Buenos Aires'],
+    'Chile': ['Santiago'],
+    'Peru': ['Lima'],
+    'UAE': ['Dubai']
+};
+
+
+
+function handleSelectionFilter(selectedValue) {
+    console.log("Selected value of Region:", selectedValue);
+    // You can perform further actions based on the selected value
+}
+
+function populateCountryDropdown(selectedRegion) {
+  const countryDropdown = document.getElementById('country-dropdown');
+  const countries = countryData[selectedRegion];
+  if (countries) {
+      countryDropdown.innerHTML = ''; // Clear existing options
+      countries.forEach(country => {
+          const li = document.createElement('li');
+          li.innerHTML = `<a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('country','${country}'); handleCountrySelection('${country}')">${country}</a>`;
+          countryDropdown.appendChild(li);
+      });
+      countryDropdown.disabled = false;
+  } else {
+      countryDropdown.innerHTML = ''; // Clear dropdown if no countries available
+      countryDropdown.disabled = true;
+  }
+}
+
+function populateAreaDropdown(selectedCountry) {
+  const areaDropdown = document.getElementById('area-dropdown');
+  const areas = areaData[selectedCountry];
+  if (areas) {
+      areaDropdown.innerHTML = ''; // Clear existing options
+      areas.forEach(area => {
+          const li = document.createElement('li');
+          li.innerHTML = `<a class="dropdown-item border-radius-md" href="#" onclick="handleSelection('area','${area}')">${area}</a>`;
+          areaDropdown.appendChild(li);
+      });
+      areaDropdown.disabled = false;
+  } else {
+      areaDropdown.innerHTML = ''; // Clear dropdown if no areas available
+      areaDropdown.disabled = true;
+  }
+}
+
+function handleRegionSelection(selectedRegion) {
+  console.log("Here I am handleRegionSelection");
+  populateCountryDropdown(selectedRegion);
+  // Clear area dropdown
+  const areaDropdown = document.getElementById('area-dropdown');
+  areaDropdown.innerHTML = '';
+  areaDropdown.disabled = true;
+}
+
+function handleCountrySelection(selectedCountry) {
+  console.log("Here I am handleCountrySelection");
+  populateAreaDropdown(selectedCountry);
+}
+  document.getElementById('prediction-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    // Retrieve input values from sliders
+    var propertySize = document.getElementById('property-size').value;
+    var commissionRate = document.getElementById('commission-rate').value;
+    var differenceDays = document.getElementById('difference-days').value;
+    var feedbackScore = document.getElementById('feedback-score').value;
+    var propertyType = getSelectedValue('property-type');
+    var transactionType = getSelectedValue('transaction-type');
+    var region = getSelectedValue('region');
+    var country = getSelectedValue('country');
+    var area = getSelectedValue('area');
+
+    var formData = {
+      property_size: propertySize,
+      commission_rate: commissionRate,
+      difference_days: differenceDays,
+      feedback_score: feedbackScore,
+      property_type: propertyType,
+      transaction_type:transactionType,
+      region: region,
+      country: country,
+      area: area
+    };
+
+    console.log("Data to be sent: ", formData)
+    // You can retrieve values from other sliders similarly
+    // AJAX request to send input values to Flask route for prediction
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/predict', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          var predictedPrice = JSON.parse(xhr.responseText).predicted_price;
+          predictedPrice = predictedPrice*1e6
+          broker_data_list = JSON.parse(xhr.responseText).broker_data;
+          //console.log("I'm here inside xhr for brooker data list",broker_data_list)
+          // Update the predicted price display
+          document.getElementById('predicted-price').textContent = '$' + predictedPrice.toFixed(2);
+          var countText = document.getElementById('countText');
+          countText.textContent = broker_data_list.length + ' done';
+          console.log("Broker List Data is here", broker_data_list)
+          //var brokerFirmList = [];
+          //broker_data_list.forEach(function(broker) {
+            //console.log('Broker:', broker);
+            //console.log('Area:', broker.Area);
+            //brokerFirmList.push(broker.Broker_Firm_Name);
+            /*console.log('Broker ID:', broker.Broker_ID);
+            console.log('Category:', broker.Category);
+            console.log('Commission Rate:', broker.Commission_Rate);
+            console.log('Country:', broker.Country);
+            console.log('Date of Closing:', broker.Date_of_Closing);
+            console.log('Date of Purchase:', broker.Date_of_Purchase);
+            console.log('Difference (in days):', broker['Difference (in days)']);
+            console.log('Feedback Comments:', broker.Feedback_Comments);
+            console.log('Feedback Score:', broker.Feedback_Score);
+            console.log('Payment Terms:', broker.Payment_Terms);
+            console.log('Price in USD:', broker.Price_in_USD);
+            console.log('Price with Commission:', broker.Price_with_Commission);
+            console.log('Property Size:', broker.Property_Size);
+            console.log('Property Type:', broker.Property_Type);
+            console.log('Region:', broker.Region);
+            console.log('Transaction Type:', broker.Transaction_Type);
+            console.log('Warranty Period:', broker.Warranty_Period);
+            console.log('Zipcode:', broker.Zipcode);*/
+          
+
+       
+          // Access other properties as needed
+        //});
+        // Get the first <tbody> element in the document
+        //var tbody = document.querySelector('tbody');
+
+        // Get all <h6> elements inside <div> elements inside <td> elements inside <tr> elements inside the first <tbody>
+        //var h6Elements = tbody.querySelectorAll('tr td div h6');
+
+        // Loop through each <h6> element and update its text content
+        //h6Elements.forEach(function(element, index) {
+            //element.textContent = brokerFirmList[index];
+        //});
+        // Get the <tbody> element where table rows will be appended
+          var tbody = document.getElementById('brokerDataTbody');
+          tbody.innerHTML = '';
+          // Iterate through the broker_data_list array
+          broker_data_list.forEach(function(broker) {
+              // Create a new <tr> element
+              var tr = document.createElement('tr');
+              var numTeamMembers = Math.floor(Math.random() * 4) + 1;
+              var avatarGroupHTML = `<div class="avatar-group mt-2">`;
+                for (var i = 0; i < numTeamMembers; i++) {
+                    var teamMember = getRandomTeamMember();
+                    avatarGroupHTML += `
+                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="${teamMember.name}">
+                            <img src="/static/assets/img/team-${teamMember.number}.jpg" alt="${teamMember.name}">
+                        </a>
+                    `;
+                }
+                avatarGroupHTML += `</div>`;
+              // Populate the <tr> element with the broker data
+              tr.innerHTML = `
+                  <td>
+                      <div class="d-flex px-2 py-1" style="flex-grow: 1;">
+                          <div>
+                              <img src="/static/assets/img/small-logos/logo-xd.svg" class="avatar avatar-sm me-3" alt="xd">
+                          </div>
+                          <div class="d-flex flex-column justify-content-center">
+                              <h6 class="mb-0 text-sm">${broker.Broker_Firm_Name}</h6>
+                          </div>
+                      </div>
+                  </td>
+                  <td>
+                    <div class="d-flex flex-column justify-content-center">
+                      <h6 class="mb-0 text-sm">$${broker.Price_with_Commission.toFixed(2)}</h6>
+                  </div>
+                  </td>
+                  <td>
+                    <div class="d-flex flex-column justify-content-center">
+                      <h6 class="mb-0 text-sm">$${broker.Price_in_USD.toFixed(2)}</h6>
+                  </div>
+                  </td>
+                <td>
+                  <div class="d-flex flex-column justify-content-center">
+                    <h6 class="mb-0 text-sm">${broker.Commission_Rate}</h6>
+                </div>
+                </td>
+                  <td>
+                    <div class="d-flex flex-column justify-content-center">
+                      <h6 class="mb-0 text-sm">${broker.Property_Size}</h6>
+                  </div>
+                  </td>
+                  <td>
+                    <div class="d-flex flex-column justify-content-center">
+                      <h6 class="mb-0 text-sm">${broker.Property_Type}</h6>
+                  </div>
+                  </td>
+                  <td>
+                    <div class="d-flex flex-column justify-content-center">
+                      <h6 class="mb-0 text-sm">${broker.Transaction_Type}</h6>
+                  </div>
+                  </td>
+                  <td>
+                    <div class="d-flex flex-column justify-content-center">
+                      <h6 class="mb-0 text-sm">${broker.Region}</h6>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex flex-column justify-content-center">
+                    <h6 class="mb-0 text-sm">${broker.Country}</h6>
+                </div>
+                </td>
+                    <td>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="mb-0 text-sm">${broker.Area}</h6>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="d-flex flex-column justify-content-center">
+                      <h6 class="mb-0 text-sm">${broker.Zipcode}</h6>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="d-flex flex-column justify-content-center">
+                      <h6 class="mb-0 text-sm">${broker.Category}</h6>
+                  </div>
+                  </td>
+                  <td>
+                    <div class="d-flex flex-column justify-content-center">
+                      <h6 class="mb-0 text-sm">${new Date(broker.Date_of_Purchase).toLocaleDateString('en-US')}</h6>
+                    </div>
+                  </td>
+                  <td>
+                        <div class="d-flex flex-column justify-content-center">
+                          <h6 class="mb-0 text-sm">${new Date(broker.Date_of_Closing).toLocaleDateString('en-US')}</h6>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="d-flex flex-column justify-content-center">
+                        <h6 class="mb-0 text-sm">${broker['Difference (in days)']}</h6>
+                    </div>
+                  </td>
+                  <td>
+                      <div class="d-flex flex-column justify-content-center">
+                      <h6 class="mb-0 text-sm">${broker.Feedback_Score}</h6>
+                       </div>
+                  </td>
+                    <td>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="mb-0 text-sm">${broker.Feedback_Comments}</h6>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="d-flex flex-column justify-content-center">
+                      <h6 class="mb-0 text-sm">${broker.Warranty_Period}</h6>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex flex-column justify-content-center">
+                    <h6 class="mb-0 text-sm">${broker.Payment_Terms}</h6>
+                </div>
+                </td>
+                  <td>
+                    ${avatarGroupHTML}
+                  </td>
+                  <td class="align-middle">
+                      <div class="progress-wrapper w-75 mx-auto">
+                          <div class="progress-info">
+                              <div class="progress-percentage">
+                                  <span class="text-xs font-weight-bold">60%</span>
+                              </div>
+                          </div>
+                          <div class="progress">
+                              <div class="progress-bar bg-gradient-info w-60" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                      </div>
+                  </td>
+              `;
+
+              // Append the <tr> element to the <tbody>
+              tbody.appendChild(tr);
+          });
+          function getRandomTeamMember() {
+            var teamMembers = [
+                { name: 'Ryan Tompson', number: 1 },
+                { name: 'Romina Hadid', number: 2 },
+                { name: 'Alexander Smith', number: 3 },
+                { name: 'Jessica Doe', number: 4 }
+            ];
+            var randomIndex = Math.floor(Math.random() * teamMembers.length);
+            return teamMembers[randomIndex];
+        }
+
+        } else {
+          console.error('Prediction request failed');
+        }
+      }
+    };
+    xhr.send(JSON.stringify(formData));
+  });
+
+  
+</script>
+      <div class="row mb-4">
+        <div class="col-lg-12 col-md-6 mb-md-0 mb-4">
+          <div class="card z-index-2">
+            <div class="card-header pb-0">
+              <div class="row">
+                <div class="col-lg-6 col-7">
+                  <h6>List of Efficient Brokers</h6>
+                  <p class="text-sm mb-0">
+                    <i class="fa fa-check text-info" aria-hidden="true"></i>
+                    <span class="font-weight-bold ms-1" id = "countText">30 done</span> Brokers Found
+                  </p>
+                </div>
+                <div class="col-lg-6 col-5 my-auto text-end">
+                  <div class="dropdown float-lg-end pe-4">
+                    <a class="cursor-pointer" id="dropdownTable" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="fa fa-ellipsis-v text-secondary"></i>
+                    </a>
+                    <ul class="dropdown-menu px-2 py-3 ms-sm-n4 ms-n5" aria-labelledby="dropdownTable">
+                      <li><a class="dropdown-item border-radius-md" href="javascript:;">Action</a></li>
+                      <li><a class="dropdown-item border-radius-md" href="javascript:;">Another action</a></li>
+                      <li><a class="dropdown-item border-radius-md" href="javascript:;">Something else here</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-body px-0 pb-2">
+              <div class="table-responsive">
+                <table class="table align-items-center mb-0">
+                  <thead>
+                    <tr>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Broker Firm Name</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Price with Commission</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Price in USD</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Commission Rate</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Property Size</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Property Type</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Transaction Type</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Region</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Country</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Area</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Zipcode</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Broker Category</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date of Purchase</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Date of Closing</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Difference in Days</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Feedback Score</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Feedback Comments</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Warranty Period</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Payment Terms</th>
+                    </tr>
+                  </thead>
+                  <tbody id ="brokerDataTbody">
+                    <tr>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          <div>
+                            <img src="/static/assets/img/small-logos/logo-xd.svg" class="avatar avatar-sm me-3" alt="xd">
+                          </div>
+                          <div class="d-flex flex-column justify-content-center">
+                            <h6 class="mb-0 text-sm">Material XD Version</h6>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="avatar-group mt-2">
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Tompson">
+                            <img src="/static/assets/img/team-1.jpg" alt="team1">
+                          </a>
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Romina Hadid">
+                            <img src="/static/assets/img/team-2.jpg" alt="team2">
+                          </a>
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Alexander Smith">
+                            <img src="/static/assets/img/team-3.jpg" alt="team3">
+                          </a>
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Jessica Doe">
+                            <img src="/static/assets/img/team-4.jpg" alt="team4">
+                          </a>
+                        </div>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <span class="text-xs font-weight-bold"> $14,000 </span>
+                      </td>
+                      <td class="align-middle">
+                        <div class="progress-wrapper w-75 mx-auto">
+                          <div class="progress-info">
+                            <div class="progress-percentage">
+                              <span class="text-xs font-weight-bold">60%</span>
+                            </div>
+                          </div>
+                          <div class="progress">
+                            <div class="progress-bar bg-gradient-info w-60" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          <div>
+                            <img src="/static/assets/img/small-logos/logo-atlassian.svg" class="avatar avatar-sm me-3" alt="atlassian">
+                          </div>
+                          <div class="d-flex flex-column justify-content-center">
+                            <h6 class="mb-0 text-sm">Add Progress Track</h6>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="avatar-group mt-2">
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Romina Hadid">
+                            <img src="/static/assets/img/team-2.jpg" alt="team5">
+                          </a>
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Jessica Doe">
+                            <img src="/static/assets/img/team-4.jpg" alt="team6">
+                          </a>
+                        </div>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <span class="text-xs font-weight-bold"> $3,000 </span>
+                      </td>
+                      <td class="align-middle">
+                        <div class="progress-wrapper w-75 mx-auto">
+                          <div class="progress-info">
+                            <div class="progress-percentage">
+                              <span class="text-xs font-weight-bold">10%</span>
+                            </div>
+                          </div>
+                          <div class="progress">
+                            <div class="progress-bar bg-gradient-info w-10" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          <div>
+                            <img src="/static/assets/img/small-logos/logo-slack.svg" class="avatar avatar-sm me-3" alt="team7">
+                          </div>
+                          <div class="d-flex flex-column justify-content-center">
+                            <h6 class="mb-0 text-sm">Fix Platform Errors</h6>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="avatar-group mt-2">
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Romina Hadid">
+                            <img src="/static/assets/img/team-3.jpg" alt="team8">
+                          </a>
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Jessica Doe">
+                            <img src="/static/assets/img/team-1.jpg" alt="team9">
+                          </a>
+                        </div>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <span class="text-xs font-weight-bold"> Not set </span>
+                      </td>
+                      <td class="align-middle">
+                        <div class="progress-wrapper w-75 mx-auto">
+                          <div class="progress-info">
+                            <div class="progress-percentage">
+                              <span class="text-xs font-weight-bold">100%</span>
+                            </div>
+                          </div>
+                          <div class="progress">
+                            <div class="progress-bar bg-gradient-success w-100" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          <div>
+                            <img src="/static/assets/img/small-logos/logo-spotify.svg" class="avatar avatar-sm me-3" alt="spotify">
+                          </div>
+                          <div class="d-flex flex-column justify-content-center">
+                            <h6 class="mb-0 text-sm">Launch our Mobile App</h6>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="avatar-group mt-2">
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Tompson">
+                            <img src="/static/assets/img/team-4.jpg" alt="user1">
+                          </a>
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Romina Hadid">
+                            <img src="/static/assets/img/team-3.jpg" alt="user2">
+                          </a>
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Alexander Smith">
+                            <img src="/static/assets/img/team-4.jpg" alt="user3">
+                          </a>
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Jessica Doe">
+                            <img src="/static/assets/img/team-1.jpg" alt="user4">
+                          </a>
+                        </div>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <span class="text-xs font-weight-bold"> $20,500 </span>
+                      </td>
+                      <td class="align-middle">
+                        <div class="progress-wrapper w-75 mx-auto">
+                          <div class="progress-info">
+                            <div class="progress-percentage">
+                              <span class="text-xs font-weight-bold">100%</span>
+                            </div>
+                          </div>
+                          <div class="progress">
+                            <div class="progress-bar bg-gradient-success w-100" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          <div>
+                            <img src="/static/assets/img/small-logos/logo-jira.svg" class="avatar avatar-sm me-3" alt="jira">
+                          </div>
+                          <div class="d-flex flex-column justify-content-center">
+                            <h6 class="mb-0 text-sm">Add the New Pricing Page</h6>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="avatar-group mt-2">
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Tompson">
+                            <img src="/static/assets/img/team-4.jpg" alt="user5">
+                          </a>
+                        </div>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <span class="text-xs font-weight-bold"> $500 </span>
+                      </td>
+                      <td class="align-middle">
+                        <div class="progress-wrapper w-75 mx-auto">
+                          <div class="progress-info">
+                            <div class="progress-percentage">
+                              <span class="text-xs font-weight-bold">25%</span>
+                            </div>
+                          </div>
+                          <div class="progress">
+                            <div class="progress-bar bg-gradient-info w-25" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="25"></div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          <div>
+                            <img src="/static/assets/img/small-logos/logo-invision.svg" class="avatar avatar-sm me-3" alt="invision">
+                          </div>
+                          <div class="d-flex flex-column justify-content-center">
+                            <h6 class="mb-0 text-sm">Redesign New Online Shop</h6>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="avatar-group mt-2">
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Tompson">
+                            <img src="/static/assets/img/team-1.jpg" alt="user6">
+                          </a>
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Jessica Doe">
+                            <img src="/static/assets/img/team-4.jpg" alt="user7">
+                          </a>
+                        </div>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <span class="text-xs font-weight-bold"> $2,000 </span>
+                      </td>
+                      <td class="align-middle">
+                        <div class="progress-wrapper w-75 mx-auto">
+                          <div class="progress-info">
+                            <div class="progress-percentage">
+                              <span class="text-xs font-weight-bold">40%</span>
+                            </div>
+                          </div>
+                          <div class="progress">
+                            <div class="progress-bar bg-gradient-info w-40" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="40"></div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--<div class="row mb-4">
+        <div class="col-lg-8 col-md-6 mb-md-0 mb-4">
+          <div class="card">
+            <div class="card-header pb-0">
+              <div class="row">
+                <div class="col-lg-6 col-7">
+                  <h6>List of Efficient Brokers</h6>
+                  <p class="text-sm mb-0">
+                    <i class="fa fa-check text-info" aria-hidden="true"></i>
+                    <span class="font-weight-bold ms-1" id = "countText">30 done</span> Brokers Found
+                  </p>
+                </div>
+                <div class="col-lg-6 col-5 my-auto text-end">
+                  <div class="dropdown float-lg-end pe-4">
+                    <a class="cursor-pointer" id="dropdownTable" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="fa fa-ellipsis-v text-secondary"></i>
+                    </a>
+                    <ul class="dropdown-menu px-2 py-3 ms-sm-n4 ms-n5" aria-labelledby="dropdownTable">
+                      <li><a class="dropdown-item border-radius-md" href="javascript:;">Action</a></li>
+                      <li><a class="dropdown-item border-radius-md" href="javascript:;">Another action</a></li>
+                      <li><a class="dropdown-item border-radius-md" href="javascript:;">Something else here</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-body px-0 pb-2">
+              <div class="table-responsive">
+                <table class="table align-items-center mb-0">
+                  <thead>
+                    <tr>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Companies</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Members</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Budget</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Completion</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          <div>
+                            <img src="/static/assets/img/small-logos/logo-xd.svg" class="avatar avatar-sm me-3" alt="xd">
+                          </div>
+                          <div class="d-flex flex-column justify-content-center">
+                            <h6 class="mb-0 text-sm">Material XD Version</h6>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="avatar-group mt-2">
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Tompson">
+                            <img src="/static/assets/img/team-1.jpg" alt="team1">
+                          </a>
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Romina Hadid">
+                            <img src="/static/assets/img/team-2.jpg" alt="team2">
+                          </a>
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Alexander Smith">
+                            <img src="/static/assets/img/team-3.jpg" alt="team3">
+                          </a>
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Jessica Doe">
+                            <img src="/static/assets/img/team-4.jpg" alt="team4">
+                          </a>
+                        </div>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <span class="text-xs font-weight-bold"> $14,000 </span>
+                      </td>
+                      <td class="align-middle">
+                        <div class="progress-wrapper w-75 mx-auto">
+                          <div class="progress-info">
+                            <div class="progress-percentage">
+                              <span class="text-xs font-weight-bold">60%</span>
+                            </div>
+                          </div>
+                          <div class="progress">
+                            <div class="progress-bar bg-gradient-info w-60" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          <div>
+                            <img src="/static/assets/img/small-logos/logo-atlassian.svg" class="avatar avatar-sm me-3" alt="atlassian">
+                          </div>
+                          <div class="d-flex flex-column justify-content-center">
+                            <h6 class="mb-0 text-sm">Add Progress Track</h6>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="avatar-group mt-2">
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Romina Hadid">
+                            <img src="/static/assets/img/team-2.jpg" alt="team5">
+                          </a>
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Jessica Doe">
+                            <img src="/static/assets/img/team-4.jpg" alt="team6">
+                          </a>
+                        </div>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <span class="text-xs font-weight-bold"> $3,000 </span>
+                      </td>
+                      <td class="align-middle">
+                        <div class="progress-wrapper w-75 mx-auto">
+                          <div class="progress-info">
+                            <div class="progress-percentage">
+                              <span class="text-xs font-weight-bold">10%</span>
+                            </div>
+                          </div>
+                          <div class="progress">
+                            <div class="progress-bar bg-gradient-info w-10" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          <div>
+                            <img src="/static/assets/img/small-logos/logo-slack.svg" class="avatar avatar-sm me-3" alt="team7">
+                          </div>
+                          <div class="d-flex flex-column justify-content-center">
+                            <h6 class="mb-0 text-sm">Fix Platform Errors</h6>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="avatar-group mt-2">
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Romina Hadid">
+                            <img src="/static/assets/img/team-3.jpg" alt="team8">
+                          </a>
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Jessica Doe">
+                            <img src="/static/assets/img/team-1.jpg" alt="team9">
+                          </a>
+                        </div>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <span class="text-xs font-weight-bold"> Not set </span>
+                      </td>
+                      <td class="align-middle">
+                        <div class="progress-wrapper w-75 mx-auto">
+                          <div class="progress-info">
+                            <div class="progress-percentage">
+                              <span class="text-xs font-weight-bold">100%</span>
+                            </div>
+                          </div>
+                          <div class="progress">
+                            <div class="progress-bar bg-gradient-success w-100" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          <div>
+                            <img src="/static/assets/img/small-logos/logo-spotify.svg" class="avatar avatar-sm me-3" alt="spotify">
+                          </div>
+                          <div class="d-flex flex-column justify-content-center">
+                            <h6 class="mb-0 text-sm">Launch our Mobile App</h6>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="avatar-group mt-2">
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Tompson">
+                            <img src="/static/assets/img/team-4.jpg" alt="user1">
+                          </a>
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Romina Hadid">
+                            <img src="/static/assets/img/team-3.jpg" alt="user2">
+                          </a>
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Alexander Smith">
+                            <img src="/static/assets/img/team-4.jpg" alt="user3">
+                          </a>
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Jessica Doe">
+                            <img src="/static/assets/img/team-1.jpg" alt="user4">
+                          </a>
+                        </div>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <span class="text-xs font-weight-bold"> $20,500 </span>
+                      </td>
+                      <td class="align-middle">
+                        <div class="progress-wrapper w-75 mx-auto">
+                          <div class="progress-info">
+                            <div class="progress-percentage">
+                              <span class="text-xs font-weight-bold">100%</span>
+                            </div>
+                          </div>
+                          <div class="progress">
+                            <div class="progress-bar bg-gradient-success w-100" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          <div>
+                            <img src="/static/assets/img/small-logos/logo-jira.svg" class="avatar avatar-sm me-3" alt="jira">
+                          </div>
+                          <div class="d-flex flex-column justify-content-center">
+                            <h6 class="mb-0 text-sm">Add the New Pricing Page</h6>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="avatar-group mt-2">
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Tompson">
+                            <img src="/static/assets/img/team-4.jpg" alt="user5">
+                          </a>
+                        </div>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <span class="text-xs font-weight-bold"> $500 </span>
+                      </td>
+                      <td class="align-middle">
+                        <div class="progress-wrapper w-75 mx-auto">
+                          <div class="progress-info">
+                            <div class="progress-percentage">
+                              <span class="text-xs font-weight-bold">25%</span>
+                            </div>
+                          </div>
+                          <div class="progress">
+                            <div class="progress-bar bg-gradient-info w-25" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="25"></div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          <div>
+                            <img src="/static/assets/img/small-logos/logo-invision.svg" class="avatar avatar-sm me-3" alt="invision">
+                          </div>
+                          <div class="d-flex flex-column justify-content-center">
+                            <h6 class="mb-0 text-sm">Redesign New Online Shop</h6>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="avatar-group mt-2">
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Tompson">
+                            <img src="/static/assets/img/team-1.jpg" alt="user6">
+                          </a>
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Jessica Doe">
+                            <img src="/static/assets/img/team-4.jpg" alt="user7">
+                          </a>
+                        </div>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <span class="text-xs font-weight-bold"> $2,000 </span>
+                      </td>
+                      <td class="align-middle">
+                        <div class="progress-wrapper w-75 mx-auto">
+                          <div class="progress-info">
+                            <div class="progress-percentage">
+                              <span class="text-xs font-weight-bold">40%</span>
+                            </div>
+                          </div>
+                          <div class="progress">
+                            <div class="progress-bar bg-gradient-info w-40" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="40"></div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="card h-100">
+            <div class="card-header pb-0">
+              <h6>Orders overview</h6>
+              <p class="text-sm">
+                <i class="fa fa-arrow-up text-success" aria-hidden="true"></i>
+                <span class="font-weight-bold">24%</span> this month
+              </p>
+            </div>
+            <div class="card-body p-3">
+              <div class="timeline timeline-one-side">
+                <div class="timeline-block mb-3">
+                  <span class="timeline-step">
+                    <i class="material-icons text-success text-gradient">notifications</i>
+                  </span>
+                  <div class="timeline-content">
+                    <h6 class="text-dark text-sm font-weight-bold mb-0">$2400, Design changes</h6>
+                    <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">22 DEC 7:20 PM</p>
+                  </div>
+                </div>
+                <div class="timeline-block mb-3">
+                  <span class="timeline-step">
+                    <i class="material-icons text-danger text-gradient">code</i>
+                  </span>
+                  <div class="timeline-content">
+                    <h6 class="text-dark text-sm font-weight-bold mb-0">New order #1832412</h6>
+                    <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">21 DEC 11 PM</p>
+                  </div>
+                </div>
+                <div class="timeline-block mb-3">
+                  <span class="timeline-step">
+                    <i class="material-icons text-info text-gradient">shopping_cart</i>
+                  </span>
+                  <div class="timeline-content">
+                    <h6 class="text-dark text-sm font-weight-bold mb-0">Server payments for April</h6>
+                    <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">21 DEC 9:34 PM</p>
+                  </div>
+                </div>
+                <div class="timeline-block mb-3">
+                  <span class="timeline-step">
+                    <i class="material-icons text-warning text-gradient">credit_card</i>
+                  </span>
+                  <div class="timeline-content">
+                    <h6 class="text-dark text-sm font-weight-bold mb-0">New card added for order #4395133</h6>
+                    <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">20 DEC 2:20 AM</p>
+                  </div>
+                </div>
+                <div class="timeline-block mb-3">
+                  <span class="timeline-step">
+                    <i class="material-icons text-primary text-gradient">key</i>
+                  </span>
+                  <div class="timeline-content">
+                    <h6 class="text-dark text-sm font-weight-bold mb-0">Unlock packages for development</h6>
+                    <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">18 DEC 4:54 AM</p>
+                  </div>
+                </div>
+                <div class="timeline-block">
+                  <span class="timeline-step">
+                    <i class="material-icons text-dark text-gradient">payments</i>
+                  </span>
+                  <div class="timeline-content">
+                    <h6 class="text-dark text-sm font-weight-bold mb-0">New order #9583120</h6>
+                    <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">17 DEC</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-lg-4 col-md-6 mt-4 mb-4">
+          <div class="card z-index-2 ">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+              <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                <div class="chart">
+                  <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <h6 class="mb-0 ">Website Views</h6>
+              <p class="text-sm ">Last Campaign Performance</p>
+              <hr class="dark horizontal">
+              <div class="d-flex ">
+                <i class="material-icons text-sm my-auto me-1">schedule</i>
+                <p class="mb-0 text-sm"> campaign sent 2 days ago </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mt-4 mb-4">
+          <div class="card z-index-2  ">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+              <div class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1">
+                <div class="chart">
+                  <canvas id="chart-line" class="chart-canvas" height="170"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <h6 class="mb-0 "> Daily Sales </h6>
+              <p class="text-sm "> (<span class="font-weight-bolder">+15%</span>) increase in today sales. </p>
+              <hr class="dark horizontal">
+              <div class="d-flex ">
+                <i class="material-icons text-sm my-auto me-1">schedule</i>
+                <p class="mb-0 text-sm"> updated 4 min ago </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 mt-4 mb-3">
+          <div class="card z-index-2 ">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+              <div class="bg-gradient-dark shadow-dark border-radius-lg py-3 pe-1">
+                <div class="chart">
+                  <canvas id="chart-line-tasks" class="chart-canvas" height="170"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <h6 class="mb-0 ">Completed Tasks</h6>
+              <p class="text-sm ">Last Campaign Performance</p>
+              <hr class="dark horizontal">
+              <div class="d-flex ">
+                <i class="material-icons text-sm my-auto me-1">schedule</i>
+                <p class="mb-0 text-sm">just updated</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+
+      {% include 'includes/footer.html' %}
+    </div>-->
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+  <script src="/static/assets/js/plugins/chartjs.min.js"></script>
+  <script>
+    var ctx = document.getElementById("chart-bars").getContext("2d");
+
+    new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: ["M", "T", "W", "T", "F", "S", "S"],
+        datasets: [{
+          label: "Sales",
+          tension: 0.4,
+          borderWidth: 0,
+          borderRadius: 4,
+          borderSkipped: false,
+          backgroundColor: "rgba(255, 255, 255, .8)",
+          data: [50, 20, 10, 22, 50, 10, 40],
+          maxBarThickness: 6
+        }, ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false,
+          }
+        },
+        interaction: {
+          intersect: false,
+          mode: 'index',
+        },
+        scales: {
+          y: {
+            grid: {
+              drawBorder: false,
+              display: true,
+              drawOnChartArea: true,
+              drawTicks: false,
+              borderDash: [5, 5],
+              color: 'rgba(255, 255, 255, .2)'
+            },
+            ticks: {
+              suggestedMin: 0,
+              suggestedMax: 500,
+              beginAtZero: true,
+              padding: 10,
+              font: {
+                size: 14,
+                weight: 300,
+                family: "Roboto",
+                style: 'normal',
+                lineHeight: 2
+              },
+              color: "#fff"
+            },
+          },
+          x: {
+            grid: {
+              drawBorder: false,
+              display: true,
+              drawOnChartArea: true,
+              drawTicks: false,
+              borderDash: [5, 5],
+              color: 'rgba(255, 255, 255, .2)'
+            },
+            ticks: {
+              display: true,
+              color: '#f8f9fa',
+              padding: 10,
+              font: {
+                size: 14,
+                weight: 300,
+                family: "Roboto",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+        },
+      },
+    });
+
+
+    var ctx2 = document.getElementById("chart-line").getContext("2d");
+
+    new Chart(ctx2, {
+      type: "line",
+      data: {
+        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        datasets: [{
+          label: "Mobile apps",
+          tension: 0,
+          borderWidth: 0,
+          pointRadius: 5,
+          pointBackgroundColor: "rgba(255, 255, 255, .8)",
+          pointBorderColor: "transparent",
+          borderColor: "rgba(255, 255, 255, .8)",
+          borderColor: "rgba(255, 255, 255, .8)",
+          borderWidth: 4,
+          backgroundColor: "transparent",
+          fill: true,
+          data: [50, 40, 300, 320, 500, 350, 200, 230, 500],
+          maxBarThickness: 6
+
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false,
+          }
+        },
+        interaction: {
+          intersect: false,
+          mode: 'index',
+        },
+        scales: {
+          y: {
+            grid: {
+              drawBorder: false,
+              display: true,
+              drawOnChartArea: true,
+              drawTicks: false,
+              borderDash: [5, 5],
+              color: 'rgba(255, 255, 255, .2)'
+            },
+            ticks: {
+              display: true,
+              color: '#f8f9fa',
+              padding: 10,
+              font: {
+                size: 14,
+                weight: 300,
+                family: "Roboto",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+          x: {
+            grid: {
+              drawBorder: false,
+              display: false,
+              drawOnChartArea: false,
+              drawTicks: false,
+              borderDash: [5, 5]
+            },
+            ticks: {
+              display: true,
+              color: '#f8f9fa',
+              padding: 10,
+              font: {
+                size: 14,
+                weight: 300,
+                family: "Roboto",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+        },
+      },
+    });
+
+    var ctx3 = document.getElementById("chart-line-tasks").getContext("2d");
+
+    new Chart(ctx3, {
+      type: "line",
+      data: {
+        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        datasets: [{
+          label: "Mobile apps",
+          tension: 0,
+          borderWidth: 0,
+          pointRadius: 5,
+          pointBackgroundColor: "rgba(255, 255, 255, .8)",
+          pointBorderColor: "transparent",
+          borderColor: "rgba(255, 255, 255, .8)",
+          borderWidth: 4,
+          backgroundColor: "transparent",
+          fill: true,
+          data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+          maxBarThickness: 6
+
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false,
+          }
+        },
+        interaction: {
+          intersect: false,
+          mode: 'index',
+        },
+        scales: {
+          y: {
+            grid: {
+              drawBorder: false,
+              display: true,
+              drawOnChartArea: true,
+              drawTicks: false,
+              borderDash: [5, 5],
+              color: 'rgba(255, 255, 255, .2)'
+            },
+            ticks: {
+              display: true,
+              padding: 10,
+              color: '#f8f9fa',
+              font: {
+                size: 14,
+                weight: 300,
+                family: "Roboto",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+          x: {
+            grid: {
+              drawBorder: false,
+              display: false,
+              drawOnChartArea: false,
+              drawTicks: false,
+              borderDash: [5, 5]
+            },
+            ticks: {
+              display: true,
+              color: '#f8f9fa',
+              padding: 10,
+              font: {
+                size: 14,
+                weight: 300,
+                family: "Roboto",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+        },
+      },
+    });
+  </script>
+
+{% endblock javascripts %}
