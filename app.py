@@ -2,7 +2,7 @@
 """
 Copyright (c) 2019 - present AppSeed.us
 """
-
+# For azure
 import os
 from flask_migrate import Migrate
 from flask_minify import Minify
