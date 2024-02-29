@@ -11,8 +11,7 @@ RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
-# Comment for dockerfile
-# # gunicorn
-# CMD ["gunicorn", "--config", "gunicorn-cfg.py", "run:app"]
+# gunicorn
+CMD ["gunicorn", "--config", "gunicorn-cfg.py", "run:app"]
 
 EXPOSE 8000
