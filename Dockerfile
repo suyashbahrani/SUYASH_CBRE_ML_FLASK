@@ -10,6 +10,16 @@ COPY requirements.txt .
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Copy your Python scripts
+COPY cbre_ml.py /app/
+COPY prediction.py /app/
+COPY broker_list.py /app/
+
+# Run your scripts in the desired order
+RUN python cbre_ml.py
+RUN python prediction.py
+RUN python broker_list.py
+
 COPY . .
 # gunicorn
 CMD ["gunicorn", "--config", "gunicorn-cfg.py", "run:app"]
